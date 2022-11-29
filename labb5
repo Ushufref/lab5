@@ -1,0 +1,18 @@
+import requests
+#1
+response = requests.get('https://www.cbr.ru')
+print(response.status_code)
+#2
+print('Введите город:')
+city_name = input()
+respons = requests.get('https://api.openweathermap.org/data/2.5/weather?q=' + city_name + '&appid=72ead625684ec74b1162ad3b6e6366d1')
+data = respons.json()
+print('Температура: ' + str(data['main']['temp']))
+print('Давление: ' + str(data['main']['pressure']))
+print('Влажность: ' + str(data['main']['humidity']))
+#3
+respons1 = requests.get('https://www.cbr-xml-daily.ru/daily_json.js')
+data1 = respons1.json()
+print('Введите классификатор валюты:') #например EUR
+charcode = input()
+print('название валюты: ' + str(data1['Valute'][charcode]['Name']))
